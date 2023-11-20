@@ -8,7 +8,7 @@ class CarInsuranceSafeDriving():
 		# 0-60 in 9 seconds is 6.667 mph/s
 		self.max_acc = 6.667 # mph/s      
 
-		self.acc = Accelerometer
+		self.acc = Accelerometer()
 
 
 	def update_acceleration(self):

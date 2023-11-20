@@ -44,15 +44,15 @@ class Accelerometer():
 
     # Returns total acceleration on the x-y plane in meters per second squared
     def combinedAcceleration(self):
-        x = self.getAccX
-        y = self.getAccY
+        x = self.getAccX()
+        y = self.getAccY()
         combined_acceleration = sqrt((x * x) + (y * y)) # a^2 + b^2 = c^2
         return combined_acceleration
     
 
     # Returns total acceleration on the x-y plane in MPH per second
     def combinedAccelerationMPH(self):
-        x = self.getAccXMPH
-        y = self.getAccYMPH
+        x = self.getAccXMPH()
+        y = self.getAccYMPH()
         combined_acceleration = sqrt((x * x) + (y * y)) # a^2 + b^2 = c^2
         return combined_acceleration
