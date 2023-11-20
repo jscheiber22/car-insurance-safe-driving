@@ -10,11 +10,16 @@ class Accelerometer():
         self.acc = adafruit_adxl34x.ADXL343(i2c)
 
         # Zero the device's data on the x and y axis
+        print("Starting process of zeroing device...")
+        sleep(0.5)
         accx_off1, accy_off1, accz = self.acc.acceleration
-        sleep(3)
+        for x in range(3,0,-1):
+            print(str(x), end='\r')
+            sleep(1)
         accx_off2, accy_off2, accz = self.acc.acceleration
         self.accx_offset = (accx_off1 + accx_off2) / 2
         self.accy_offset = (accy_off1 + accy_off2) / 2
+        print("Zero completed with values: {}, {}.".format(self.accx_offset, self.accy_offset))
 
     # Returns x-axis acceleration in meters per second squared
     def getAccX(self):

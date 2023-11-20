@@ -5,8 +5,8 @@ import math
 class CarInsuranceSafeDriving():
 	def __init__(self):
 		# Definition of accleration limits
-		# 0-60 in 9 seconds is 6.667 mph/s
-		self.max_acc = 6.667 # mph/s      
+		# 0-60 in 5 seconds is 12 mph/s
+		self.max_acc = 12 # mph/s      
 
 		self.acc = Accelerometer()
 
