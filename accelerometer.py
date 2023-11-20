@@ -4,7 +4,7 @@ import adafruit_adxl34x
 from time import sleep
 
 
-class Accelerometer():
+class Accelerometer:
     def __init__(self):
         i2c = board.I2C()
         self.acc = adafruit_adxl34x.ADXL343(i2c)

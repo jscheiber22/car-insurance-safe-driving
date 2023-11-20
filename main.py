@@ -1,4 +1,5 @@
 from accelerometer import Accelerometer
+from audio import Audio
 from time import sleep
 import math
 
@@ -6,9 +7,10 @@ class CarInsuranceSafeDriving():
 	def __init__(self):
 		# Definition of accleration limits
 		# 0-60 in 6 seconds is 10 mph/s
-		self.max_acc = 10 # mph/s      
+		self.max_acc = 10 # mph/s
 
 		self.acc = Accelerometer()
+		self.alert = Audio()
 
 
 	def update_acceleration(self):
@@ -37,4 +39,5 @@ if __name__ == "__main__":
 		safe = cisd.check_acceleration(acc)
 		if not safe:
 			print("not safe :(")
+			cisd.alert.alert()
 
