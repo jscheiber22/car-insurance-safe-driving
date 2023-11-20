@@ -12,38 +12,45 @@ class Accelerometer():
         # Zero the device's data on the x and y axis
         print("Starting process of zeroing device...")
         sleep(0.5)
-        accx_off1, accy_off1, accz = self.acc.acceleration
+        accx_off1, accy_off1 = self.acc.acceleration[0:1]
         for x in range(3,0,-1):
             print(str(x), end='\r')
             sleep(1)
-        accx_off2, accy_off2, accz = self.acc.acceleration
+        accx_off2, accy_off2 = self.acc.acceleration[0:1]
         self.accx_offset = (accx_off1 + accx_off2) / 2
         self.accy_offset = (accy_off1 + accy_off2) / 2
         print("Zero completed with values: {}, {}.".format(self.accx_offset, self.accy_offset))
 
-    # Returns x-axis acceleration in meters per second squared
+    # Returns x-axis acceleration in meters per second squared averaged over 0.5 seconds
     def getAccX(self):
-        accx, accy, accz = self.acc.acceleration
+        runningTotal = 0
+        for i in range(0, 6):
+            runningTotal += self.acc.acceleration[0]
+            sleep(0.1)
+        accx = runningTotal / 5
         return accx - self.accx_offset
     
 
-    # Returns y-axis acceleration in meters per second squared
+    # Returns y-axis acceleration in meters per second squared averaged over 0.5 seconds
     def getAccY(self):
-        accx, accy, accz = self.acc.acceleration
+        runningTotal = 0
+        for i in range(0, 6):
+            runningTotal += self.acc.acceleration[1]
+        accy = runningTotal / 5
         return accy - self.accy_offset
     
 
     # Returns x-axis acceleration in MPH per second
     def getAccXMPH(self):
         conversion_factor = 2.23693629
-        accx, accy, accz = self.acc.acceleration
+        accx = self.acc.acceleration[0]
         return (accx - self.accx_offset) * conversion_factor
     
 
     # Returns y-axis acceleration in MPH per second
     def getAccYMPH(self):
         conversion_factor = 2.23693629
-        accx, accy, accz = self.acc.acceleration
+        accy= self.acc.acceleration[1]
         return (accy - self.accy_offset) * conversion_factor
     
 
