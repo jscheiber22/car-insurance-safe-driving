@@ -54,4 +54,5 @@ if __name__ == "__main__":
 				print("Fine driver. No difference.")
 			else:
 				print("Excellent driver. -$1/month.")
+			exit()
 
