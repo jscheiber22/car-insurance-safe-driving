@@ -18,26 +18,29 @@ class CarInsuranceSafeDriving():
 
 
 	def check_acceleration(self, acc):
-		
 		if acc > self.max_acc:
 			print("total acc: " + str(round(acc, 3)), end='\r')
 			return False
 		else:
 			return True
 		
-	# 	check_acceleration(accx, accy, accz)
-	# 	print("x: " + str(round(accx, 3)) + " y: " + str(round(accy, 3)) + " z: " + str(round(accz, 3)), end='\r')
-	# 	#print("y: \n" + str(accy), end='\r')
-	# 	#print("z: \n" + str(accz), end='\r')
-
 
 if __name__ == "__main__":
 	cisd = CarInsuranceSafeDriving()
 	safe = True
+	dangerous_acceleration_counter = 0
+
 	while True:
 		acc = cisd.update_acceleration()
 		safe = cisd.check_acceleration(acc)
 		if not safe:
-			print("not safe :(")
-			cisd.alert.alert()
+			# play alert nonstop if user violated 3 times
+			if dangerous_acceleration_counter > 2:
+				while True:
+					cisd.alert.alert()
+					sleep(1)
+			else:
+				print("not safe :(")
+				cisd.alert.alert()
+				dangerous_acceleration_counter += 1
 
