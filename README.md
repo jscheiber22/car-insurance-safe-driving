@@ -11,4 +11,5 @@ The device we created was inspired by how some insurance companies are unable to
 3. ```cd car-insurance-safe-driving/```
 4. ```python3 main.py```
 5. Let the device zero itself.
-6. Enjoy :D
+6. set up ntfy for mobile notifications
+7. Enjoy :D
